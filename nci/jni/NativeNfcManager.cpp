@@ -1704,7 +1704,7 @@ void nfaDeviceManagementCallback (UINT8 dmEvent, tNFA_DM_CBACK_DATA* eventData)
                 ALOGE ("%s: NFA_DM_NFCC_TIMEOUT_EVT; abort", __FUNCTION__);
             else if (dmEvent == NFA_DM_NFCC_TRANSPORT_ERR_EVT)
                 ALOGE ("%s: NFA_DM_NFCC_TRANSPORT_ERR_EVT; abort", __FUNCTION__);
-#if (JCOP_WA_ENABLE == TRUE)
+#if (JCOP_WA_ENABLE == FALSE)
             NFA_HciW4eSETransaction_Complete(Wait);
 #endif
             nativeNfcTag_abortWaits();
@@ -2164,7 +2164,7 @@ static jboolean nfcManager_doInitialize (JNIEnv* e, jobject o)
         nfcManager_doPartialDeInitialize();
     }
 #endif
-#if (JCOP_WA_ENABLE == TRUE)
+#if (JCOP_WA_ENABLE == FALSE)
 if ((signal(SIGABRT, sig_handler) == SIG_ERR) &&
         (signal(SIGSEGV, sig_handler) == SIG_ERR))
     {
@@ -2309,7 +2309,7 @@ if ((signal(SIGABRT, sig_handler) == SIG_ERR) &&
 #endif
                 /////////////////////////////////////////////////////////////////////////////////
                 // Add extra configuration here (work-arounds, etc.)
-#if (NXP_EXTNS == TRUE)
+#if (NXP_EXTNS == FALSE)
 #if (NFC_NXP_ESE ==  TRUE)
 #if ((NXP_ESE_SVDD_SYNC == TRUE) || (NXP_ESE_JCOP_DWNLD_PROTECTION == TRUE) || (NXP_NFCC_SPI_FW_DOWNLOAD_SYNC == TRUE)||(NXP_ESE_DWP_SPI_SYNC_ENABLE == TRUE))
                 isSuccess = createSPIEvtHandlerThread();
@@ -2447,7 +2447,7 @@ static void nfcManager_doEnableDtaMode (JNIEnv* /* e */, jobject /* o */)
     gIsDtaEnabled = true;
 }
 
-#if (NXP_EXTNS == TRUE)
+#if (NXP_EXTNS == FALSE)
 /*******************************************************************************
  **
  ** Function:        nfcManager_checkNfcStateBusy()
@@ -3306,7 +3306,7 @@ static jboolean nfcManager_doDeinitialize (JNIEnv* e, jobject obj)
 #endif
 #endif
     doDwpChannel_ForceExit();
-#if (JCOP_WA_ENABLE == TRUE)
+#if (JCOP_WA_ENABLE == FALSE)
     NFA_HciW4eSETransaction_Complete(Wait);
 #endif
     pn544InteropAbortNow ();
@@ -6370,7 +6370,7 @@ TheEnd:
     pthread_exit(NULL);
     return NULL;
 }
-#if (JCOP_WA_ENABLE == TRUE)
+#if (JCOP_WA_ENABLE == FALSE)
 /*******************************************************************************
 **
 ** Function         sig_handler

@@ -2332,7 +2332,7 @@ void RoutingManager::nfaEeCallback (tNFA_EE_EVT event, tNFA_EE_CBACK_DATA* event
             }
 
 
-#if(NXP_ESE_DUAL_MODE_PRIO_SCHEME != NXP_ESE_WIRED_MODE_RESUME)
+#if((NXP_ESE_DUAL_MODE_PRIO_SCHEME != NXP_ESE_WIRED_MODE_RESUME) && (NFC_NXP_ESE == TRUE)
             if(action.ee_handle == 0x4C0 && (action.trigger != NFC_EE_TRIG_RF_TECHNOLOGY) &&
             ((se.mIsAllowWiredInDesfireMifareCE) || !(action.trigger == NFC_EE_TRIG_RF_PROTOCOL && action.param.protocol == NFA_PROTOCOL_ISO_DEP)))
             {
@@ -2815,7 +2815,7 @@ int RoutingManager::com_android_nfc_cardemulation_doGetAidMatchingPlatform(JNIEn
            :When ever the second removal request is also reached , it is handled.
 
 */
-#if((NFC_NXP_ESE == TRUE) && (NXP_EXTNS == TRUE) && (NXP_ESE_ETSI_READER_ENABLE == TRUE))
+#if((NFC_NXP_ESE == TRUE) && (NXP_EXTNS == TRUE) && (NXP_ESE_ETSI_READER_ENABLE == TRUE) && (NFC_NXP_CHIP_TYPE != PN547C2))
 void reader_req_event_ntf (union sigval)
 {
     static const char fn [] = "RoutingManager::reader_req_event_ntf";
@@ -2859,7 +2859,7 @@ void *ee_removed_ntf_handler_thread(void* /* data */)
     ALOGD ("%s: Enter: ", fn);
     rm.mResetHandlerMutex.lock();
     ALOGD ("%s: enter sEseRemovedHandlerMutex lock", fn);
-#if (NXP_NFCEE_REMOVED_NTF_RECOVERY == TRUE)
+#if (NXP_NFCEE_REMOVED_NTF_RECOVERY == FALSE)
     NFA_HciW4eSETransaction_Complete(Release);
 #endif
 #if((NFC_NXP_ESE == TRUE) && (NXP_WIRED_MODE_STANDBY == TRUE))

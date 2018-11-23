@@ -438,7 +438,7 @@ static jboolean nativeNfcSecureElement_doDisconnectSecureElementConnection (JNIE
     /* if nothing is active after this, then tell the controller to power down */
     if (! PowerSwitch::getInstance ().setModeOff (PowerSwitch::SE_CONNECTED))
         PowerSwitch::getInstance ().setLevel (PowerSwitch::LOW_POWER);
-#if((NFC_NXP_ESE == TRUE)&&(NXP_EXTNS == TRUE))
+#if(NFC_NXP_ESE == TRUE)
     ret_val = NFC_RelWiredAccess ((void *)&status);
     if (ret_val < 0)
     {

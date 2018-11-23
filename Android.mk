@@ -6,6 +6,7 @@ LOCAL_PATH:= $(call my-dir)
 ########################################
 include $(CLEAR_VARS)
 
+LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := \
@@ -23,7 +24,6 @@ LOCAL_JAVA_LIBRARIES := com.nxp.nfc.nq
 LOCAL_PROGUARD_ENABLED := disabled
 LOCAL_STATIC_JAVA_LIBRARIES := android-support-v4
 
-LOCAL_PROPRIETARY_MODULE := true
 LOCAL_MODULE_OWNER := nxp
 
 include $(BUILD_PACKAGE)

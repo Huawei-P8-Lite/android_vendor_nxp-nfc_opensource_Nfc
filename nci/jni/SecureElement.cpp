@@ -137,7 +137,7 @@ namespace android
     static void setSPIState(bool mState);
 //////////////////////////////////////////////
 //////////////////////////////////////////////
-#if(NXP_EXTNS == TRUE)
+#if(NFC_NXP_ESE == TRUE)
 #define NFC_NUM_INTERFACE_MAP 3
 #define NFC_SWP_RD_NUM_INTERFACE_MAP 1
 
